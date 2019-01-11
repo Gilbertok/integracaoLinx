@@ -7,10 +7,10 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
+import br.com.wadvice.db.DBConnectERP;
 import br.com.wadvice.rest.model.DadosXml;
 import br.com.wadvice.rest.model.Microvix;
 import br.com.wadvice.rest.model.ProdutosDetalhes;
-import br.com.wadvice.rest.model.ResultXml;
 
 public class LinxProdutosDetalhes {
 	
@@ -19,7 +19,7 @@ public class LinxProdutosDetalhes {
 		xml = xml.replaceAll("﻿", "");
 		StringReader reader = new StringReader(xml);
 		try {
-			JAXBContext context = JAXBContext.newInstance(ResultXml.class);
+			JAXBContext context = JAXBContext.newInstance(Microvix.class);
 			Microvix result = (Microvix) context.createUnmarshaller().unmarshal(reader);
 			
 			String[] cabecalhos = result.getResponseData().getChave().getValor();
@@ -75,6 +75,7 @@ public class LinxProdutosDetalhes {
 	}
 	
 	public static void gravarProdutosDetalhes(List<ProdutosDetalhes> produtos) {
+		DBConnectERP.getInstance();
 		System.out.println(produtos);
 		
 	}

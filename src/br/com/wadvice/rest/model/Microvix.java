@@ -6,16 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="Microvix")
 public class Microvix {
 	
-	ResponseData ResponseDataObject;
-	ResponseResult ResponseResultObject;
+	private ResponseData ResponseDataObject;
+	private ResponseResult ResponseResultObject;
 
 	@XmlElement(name="ResponseData")
 	public ResponseData getResponseData() {
 		return ResponseDataObject;
-	}
-
-	public void setResponseData(ResponseData ResponseDataObject) {
-		this.ResponseDataObject = ResponseDataObject;
 	}
 
 	@XmlElement(name="ResponseResult")
@@ -23,14 +19,18 @@ public class Microvix {
 		return ResponseResultObject;
 	}
 
-	public void setResponseResult(ResponseResult ResponseResultObject) {
-		this.ResponseResultObject = ResponseResultObject;
-	}
-
 	@Override
 	public String toString() {
-		return "Microvix [ResponseDataObject=" + ResponseDataObject + ", ResponseResultObject=" + ResponseResultObject
+		return "Microvix [ResponseDataObject=" + getResponseData() + ", ResponseResultObject=" + getResponseResult()
 				+ "]";
+	}
+
+	public void setResponseData(ResponseData responseDataObject) {
+		ResponseDataObject = responseDataObject;
+	}
+
+	public void setResponseResult(ResponseResult responseResultObject) {
+		ResponseResultObject = responseResultObject;
 	}
 
 }
