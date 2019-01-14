@@ -1,13 +1,14 @@
 package br.com.wadvice.util;
 
 import java.io.StringReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
-import br.com.wadvice.db.DBConnectERP;
+import br.com.wadvice.db.dao.ProdutosDetalhesDao;
 import br.com.wadvice.rest.model.DadosXml;
 import br.com.wadvice.rest.model.Microvix;
 import br.com.wadvice.rest.model.ProdutosDetalhes;
@@ -74,10 +75,9 @@ public class LinxProdutosDetalhes {
 		return produtos;
 	}
 	
-	public static void gravarProdutosDetalhes(List<ProdutosDetalhes> produtos) {
-		DBConnectERP.getInstance();
-		System.out.println(produtos);
-		
+	public static void gravarProdutosDetalhes(List<ProdutosDetalhes> produtos) throws SQLException {
+		ProdutosDetalhesDao dao = new ProdutosDetalhesDao();
+		dao.gravarLista(produtos);
 	}
 
 }

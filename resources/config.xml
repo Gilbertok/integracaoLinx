@@ -5,4 +5,5 @@
 	<db_database>dbsystex</db_database>
 	<db_user>systextil</db_user>
 	<db_password>oracle</db_password>
+	<srv_tempo>1</srv_tempo>
 </Config>

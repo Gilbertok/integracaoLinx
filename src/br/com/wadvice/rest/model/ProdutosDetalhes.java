@@ -14,6 +14,21 @@ public class ProdutosDetalhes {
 	private String descConfigTributaria;
 	private Float despesas1;
 	
+//	CREATE TABLE WAD_LINX_PROD_DET 
+//	(
+//	  PORTAL INT NOT NULL 
+//	, CNPJ_EMP VARCHAR2(14) 
+//	, COD_PRODUTO VARCHAR2(20) 
+//	, COD_BARRA VARCHAR2(20) 
+//	, QUANTIDADE FLOAT 
+//	, PRECO_CUSTO FLOAT 
+//	, PRECO_VENDA FLOAT 
+//	, CUSTO_MEDIO FLOAT 
+//	, ID_CONFIG_TRIBUTÁRIA INT 
+//	, DESC_CONFIG_TRIBUTÁRIA VARCHAR2(30) 
+//	, DESPESAS1 FLOAT 
+//	);
+	
 	
 	public Integer getPortal() {
 		return portal;

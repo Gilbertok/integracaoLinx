@@ -1,13 +1,6 @@
 package br.com.wadvice.rest;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -27,11 +20,21 @@ import br.com.wadvice.util.LinxProdutosDetalhes;
 import br.com.wadvice.util.XmlUtils;
 
 @SuppressWarnings("deprecation")
-public class HTTPClassExample {
+public class IntegracaoLinx {
 
 	private static final String URL_FILE_XML = "resources/linxProdutosDetalhes.xml";
 
 	public static void main(String[] args) {
+		try {
+			System.out.println("INICIO");
+			new IntegracaoLinx().getProdutoDetalhe();
+			System.out.println("FIM");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getProdutoDetalhe() {
 		try {
 			ConfigXml config = ConfigUtils.getInstance();
 			List<ProdutosDetalhes> produtos = postData(config.getUrlWebService());
@@ -42,7 +45,7 @@ public class HTTPClassExample {
 	}
 	
 	@SuppressWarnings({"resource"})
-	public static List<ProdutosDetalhes> postData(String url) {
+	public List<ProdutosDetalhes> postData(String url) {
 	    HttpParams myParams = new BasicHttpParams();
 	    HttpConnectionParams.setConnectionTimeout(myParams, 10000);
 	    HttpConnectionParams.setSoTimeout(myParams, 10000);

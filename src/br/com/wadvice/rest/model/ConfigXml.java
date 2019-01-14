@@ -11,6 +11,7 @@ public class ConfigXml {
 	private String dbPassword;
 	private String dbServer;
 	private String dbDatabase;
+	private Integer tempoAtualizacao;
 	
 	@XmlElement(name="url_web_service")
 	public String getUrlWebService() {
@@ -55,6 +56,15 @@ public class ConfigXml {
 
 	public void setDbDatabase(String dbDatabase) {
 		this.dbDatabase = dbDatabase;
+	}
+
+	@XmlElement(name="srv_tempo")
+	public Integer getTempoAtualizacao() {
+		return tempoAtualizacao;
+	}
+
+	public void setTempoAtualizacao(Integer tempoAtualizacao) {
+		this.tempoAtualizacao = tempoAtualizacao;
 	}
 	
 }
