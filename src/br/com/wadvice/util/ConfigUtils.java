@@ -28,6 +28,7 @@ public class ConfigUtils {
 			StringReader reader = new StringReader(XmlUtils.getXml(URL_CONFIG_XML));
 			JAXBContext context = JAXBContext.newInstance(ConfigXml.class);
 			config = (ConfigXml) context.createUnmarshaller().unmarshal(reader);
+			System.out.println("--- Arquivo de configuraçãp OK -----");
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		} catch (IOException e2) {

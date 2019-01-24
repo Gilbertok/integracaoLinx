@@ -76,13 +76,25 @@ public class ProdutosDetalhesDao {
 		return exists;
 	}
 
-	public void gravarLista(List<ProdutosDetalhes> produtos) throws SQLException {
+	public void gravarLista(List<ProdutosDetalhes> produtos) {
 		this.createIfNoExists();
 		for (ProdutosDetalhes produto : produtos) {
-			if (this.exists(produto.getCnpjEmpresa(), produto.getCodBarra())) {
-				this.update(produto);
-			} else {
-				this.insert(produto);
+			if(produto.getCodBarra() != null && !produto.getCodBarra().isEmpty()) {
+				if (this.exists(produto.getCnpjEmpresa(), produto.getCodBarra())) {
+					try {
+						this.update(produto);
+					} catch (SQLException e) {
+						System.out.println("Produto: "+ produto.getCodProduto());
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						this.insert(produto);
+					} catch (SQLException e) {
+						System.out.println("Produto: "+ produto.getCodProduto());
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 	}
