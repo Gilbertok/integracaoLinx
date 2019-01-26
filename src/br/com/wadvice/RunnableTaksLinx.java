@@ -1,7 +1,9 @@
-package br.com.wadvice.thread;
+package br.com.wadvice;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import br.com.wadvice.thread.TaskLinx;
 
 public class RunnableTaksLinx {
 	

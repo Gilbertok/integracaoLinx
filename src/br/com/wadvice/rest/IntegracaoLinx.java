@@ -10,6 +10,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import br.com.wadvice.rest.model.ConfigXml;
 import br.com.wadvice.rest.model.ProdutosDetalhes;
@@ -20,6 +22,7 @@ import br.com.wadvice.util.XmlUtils;
 public class IntegracaoLinx {
 
 	private static final String URL_FILE_XML = "resources/linxProdutosDetalhes.xml";
+	private static final Logger logger = LoggerFactory.getLogger(IntegracaoLinx.class);
 
 	public static void main(String[] args) {
 		try {
@@ -35,7 +38,7 @@ public class IntegracaoLinx {
 		try {
 			ConfigXml config = ConfigUtils.getInstance();
 			List<ProdutosDetalhes> produtos = postData(config.getUrlWebService());
-			System.out.println(produtos);
+			logger.debug(produtos.toString());
 			LinxProdutosDetalhes.gravarProdutosDetalhes(produtos);
 		} catch (Exception e) {
 			e.printStackTrace();
