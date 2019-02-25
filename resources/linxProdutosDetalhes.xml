@@ -5,10 +5,10 @@
 <Command>
 <Name>LinxProdutosDetalhes</Name>
 <Parameters>
-<Parameter id='chave'>aa96ce49-aae3-4e82-a147-a0217a34b4c2</Parameter>
-  <Parameter id='cnpjEmp'>03457085000472</Parameter>
-   <Parameter id='data_mov_ini'>NULL</Parameter>
-   <Parameter id='data_mov_fim'>NULL</Parameter>
+	<Parameter id='chave'>aa96ce49-aae3-4e82-a147-a0217a34b4c2</Parameter>
+  	<Parameter id='cnpjEmp'>#CNPJ_EMPRESA</Parameter>
+   	<Parameter id='data_mov_ini'>NULL</Parameter>
+   	<Parameter id='data_mov_fim'>NULL</Parameter>
 </Parameters>
 </Command>
 </LinxMicrovix>

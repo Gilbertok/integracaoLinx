@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import br.com.wadvice.rest.IntegracaoLinx;
-import br.com.wadvice.rest.model.ConfigXml;
+import br.com.wadvice.rest.SincProdutoDetalhe;
+import br.com.wadvice.rest.model.xml.ConfigXml;
 import br.com.wadvice.util.ConfigUtils;
 
 public class TaskLinx implements Runnable {
@@ -29,7 +29,7 @@ public class TaskLinx implements Runnable {
 				public void run() {
 					try {
 						System.out.println("Execucao TaskLinx -- "+ new Date());
-						new IntegracaoLinx().getProdutoDetalhe();
+						new SincProdutoDetalhe().getData("");
 						System.out.println("Fim TaskLinx -- "+ new Date());
 					} catch (Exception e) {
 						e.printStackTrace();

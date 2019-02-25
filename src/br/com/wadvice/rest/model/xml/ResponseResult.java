@@ -1,4 +1,4 @@
-package br.com.wadvice.rest.model;
+package br.com.wadvice.rest.model.xml;
 
 public class ResponseResult {
 

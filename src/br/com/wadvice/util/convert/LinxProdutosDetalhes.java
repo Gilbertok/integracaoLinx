@@ -1,4 +1,4 @@
-package br.com.wadvice.util;
+package br.com.wadvice.util.convert;
 
 import java.io.StringReader;
 import java.sql.SQLException;
@@ -9,14 +9,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
 import br.com.wadvice.db.dao.ProdutosDetalhesDao;
-import br.com.wadvice.rest.model.DadosXml;
-import br.com.wadvice.rest.model.Microvix;
-import br.com.wadvice.rest.model.ProdutosDetalhes;
+import br.com.wadvice.rest.model.linx.ProdutosDetalhesModel;
+import br.com.wadvice.rest.model.xml.DadosXml;
+import br.com.wadvice.rest.model.xml.Microvix;
 
 public class LinxProdutosDetalhes {
 	
-	public static List<ProdutosDetalhes> convertStringXmlToObjects(String xml) {
-		List<ProdutosDetalhes> produtos = new ArrayList<>();
+	public static List<ProdutosDetalhesModel> convertStringXmlToObjects(String xml) {
+		List<ProdutosDetalhesModel> produtos = new ArrayList<>();
 		xml = xml.replaceAll("﻿", "");
 		StringReader reader = new StringReader(xml);
 		try {
@@ -27,7 +27,7 @@ public class LinxProdutosDetalhes {
 			List<DadosXml> registros = result.getResponseData().getResultados();
 			
 			for (DadosXml dadosXml : registros) {
-				ProdutosDetalhes produto = new ProdutosDetalhes();
+				ProdutosDetalhesModel produto = new ProdutosDetalhesModel();
 				for (int i = 0; i < cabecalhos.length; i++) {
 					switch (cabecalhos[i]) {
 					case "portal":
@@ -75,7 +75,7 @@ public class LinxProdutosDetalhes {
 		return produtos;
 	}
 	
-	public static void gravarProdutosDetalhes(List<ProdutosDetalhes> produtos) throws SQLException {
+	public static void gravarProdutosDetalhes(List<ProdutosDetalhesModel> produtos) throws SQLException {
 		ProdutosDetalhesDao dao = new ProdutosDetalhesDao();
 		dao.gravarLista(produtos);
 	}

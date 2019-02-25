@@ -1,9 +1,7 @@
-package br.com.wadvice.rest.model;
+package br.com.wadvice.rest.model.linx;
 
-public class ProdutosDetalhes {
+public class ProdutosDetalhesModel extends LinxModel {
 	
-	private Integer portal;
-	private String cnpjEmpresa;
 	private String codProduto;
 	private String codBarra;
 	private Float quantidade;
@@ -29,22 +27,6 @@ public class ProdutosDetalhes {
 //	, DESPESAS1 FLOAT 
 //	);
 	
-	
-	public Integer getPortal() {
-		return portal;
-	}
-	public void setPortal(Integer portal) {
-		this.portal = portal;
-	}
-	public void setPortal(String portal) {
-		this.portal = portal != null ? Integer.parseInt(portal) : 0;
-	}
-	public String getCnpjEmpresa() {
-		return cnpjEmpresa;
-	}
-	public void setCnpjEmpresa(String cnpjEmpresa) {
-		this.cnpjEmpresa = cnpjEmpresa;
-	}
 	public String getCodProduto() {
 		return codProduto;
 	}
@@ -120,7 +102,7 @@ public class ProdutosDetalhes {
 	
 	@Override
 	public String toString() {
-		return "ProdutosDetalhes [portal=" + portal + ", cnpjEmpresa=" + cnpjEmpresa + ", codProduto=" + codProduto
+		return "ProdutosDetalhes [portal=" + getPortal() + ", cnpjEmpresa=" + cnpjEmpresa + ", codProduto=" + codProduto
 				+ ", codBarra=" + codBarra + ", quantidade=" + quantidade + ", precoCusto=" + precoCusto
 				+ ", precoVenda=" + precoVenda + ", custoMedio=" + custoMedio + ", idConfigTributaria="
 				+ idConfigTributaria + ", descConfigTributaria=" + descConfigTributaria + ", despesas1=" + despesas1

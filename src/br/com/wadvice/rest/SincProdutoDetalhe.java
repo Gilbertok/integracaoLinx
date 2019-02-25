@@ -13,31 +13,21 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.wadvice.rest.model.ConfigXml;
-import br.com.wadvice.rest.model.ProdutosDetalhes;
+import br.com.wadvice.rest.model.linx.ProdutosDetalhesModel;
+import br.com.wadvice.rest.model.xml.ConfigXml;
 import br.com.wadvice.util.ConfigUtils;
-import br.com.wadvice.util.LinxProdutosDetalhes;
 import br.com.wadvice.util.XmlUtils;
+import br.com.wadvice.util.convert.LinxProdutosDetalhes;
 
-public class IntegracaoLinx {
+public class SincProdutoDetalhe {
 
 	private static final String URL_FILE_XML = "resources/linxProdutosDetalhes.xml";
-	private static final Logger logger = LoggerFactory.getLogger(IntegracaoLinx.class);
+	private static final Logger logger = LoggerFactory.getLogger(SincProdutoDetalhe.class);
 
-	public static void main(String[] args) {
-		try {
-			System.out.println("INICIO");
-			new IntegracaoLinx().getProdutoDetalhe();
-			System.out.println("FIM");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void getProdutoDetalhe() {
+	public void getData(String cnpjEmpresa) {
 		try {
 			ConfigXml config = ConfigUtils.getInstance();
-			List<ProdutosDetalhes> produtos = postData(config.getUrlWebService());
+			List<ProdutosDetalhesModel> produtos = this.postData(config.getUrlWebService(), cnpjEmpresa);
 			logger.debug(produtos.toString());
 			LinxProdutosDetalhes.gravarProdutosDetalhes(produtos);
 		} catch (Exception e) {
@@ -45,16 +35,17 @@ public class IntegracaoLinx {
 		}
 	}
 	
-	public List<ProdutosDetalhes> postData(String url) {
+	public List<ProdutosDetalhesModel> postData(String url, String cnpjEmpresa) {
 		HttpClient client = HttpClientBuilder.create().build();
 	    try {
 	        HttpPost httppost = new HttpPost(url.toString());
 	        httppost.setHeader("Content-type", "application/xml");
-			StringEntity se = new StringEntity(XmlUtils.getXml(URL_FILE_XML));
+	        String xmlEntity = XmlUtils.getXml(URL_FILE_XML);
+	        xmlEntity = xmlEntity.replaceAll("#CNPJ_EMPRESA", cnpjEmpresa);
+			StringEntity se = new StringEntity(xmlEntity);
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/xml"));
 			httppost.setEntity(se); 
 			HttpResponse response = client.execute(httppost);
-			
 			if (response.getStatusLine().getStatusCode() == 200) {
 				return LinxProdutosDetalhes.convertStringXmlToObjects(EntityUtils.toString(response.getEntity()));
 			} else {

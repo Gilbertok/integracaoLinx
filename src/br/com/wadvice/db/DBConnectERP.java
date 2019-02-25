@@ -6,15 +6,15 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.wadvice.rest.IntegracaoLinx;
-import br.com.wadvice.rest.model.ConfigXml;
+import br.com.wadvice.rest.SincProdutoDetalhe;
+import br.com.wadvice.rest.model.xml.ConfigXml;
 import br.com.wadvice.util.ConfigUtils;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class DBConnectERP {
 	
     private static Connection instance;
-    private static final Logger logger = LoggerFactory.getLogger(IntegracaoLinx.class);
+    private static final Logger logger = LoggerFactory.getLogger(SincProdutoDetalhe.class);
 	
 	private DBConnectERP() {}
 	

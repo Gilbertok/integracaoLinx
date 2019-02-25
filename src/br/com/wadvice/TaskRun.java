@@ -1,11 +1,18 @@
 package br.com.wadvice;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.wadvice.rest.IntegracaoLinx;
+import br.com.wadvice.db.dao.LinxConfigDao;
+import br.com.wadvice.rest.SincLojas;
+import br.com.wadvice.rest.SincMovimentosNF;
+import br.com.wadvice.rest.SincProdutoDetalhe;
+import br.com.wadvice.rest.model.linx.GrupoLojasModel;
+import br.com.wadvice.util.DateUtils;
 
 public class TaskRun {
 	
@@ -13,7 +20,22 @@ public class TaskRun {
 	
 	public static void main(String[] args) {
 		logger.info("- Execucao Inicio -- "+ new Date());
-		new IntegracaoLinx().getProdutoDetalhe();
+		DateUtils dateUtils = new DateUtils();
+		Calendar dataAtual = Calendar.getInstance();
+		List<GrupoLojasModel> lojas = new SincLojas().getData();
+		for (GrupoLojasModel loja : lojas) {
+			LinxConfigDao conf = new LinxConfigDao();
+//			new SincProdutoDetalhe().getData(loja.getCnpjEmpresa());
+			
+			Calendar dataUltSinc = conf.getDataUltSinc(loja.getPortal(), loja.getCnpjEmpresa());
+			while (dateUtils.before(dataUltSinc, dataAtual)) {
+				
+				new SincMovimentosNF().getData(loja.getCnpjEmpresa(), dataUltSinc);
+
+				dataUltSinc = dateUtils.addDia(dataUltSinc);
+			}
+			conf.atualizaDataSinc(loja.getPortal(), loja.getCnpjEmpresa());
+		}
 		logger.info(" Execucao Fim -------- ");
 	}
 
