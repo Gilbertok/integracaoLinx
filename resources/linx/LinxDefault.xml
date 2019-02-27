@@ -3,7 +3,7 @@
 <Authentication user="linx_export" password="linx_export" />
 <ResponseFormat>xml</ResponseFormat>
 <Command>
-<Name>LinxMovimento</Name>
+<Name>#INTEGRACAO</Name>
 <Parameters>
 	<Parameter id="chave">aa96ce49-aae3-4e82-a147-a0217a34b4c2</Parameter>
 	<Parameter id='cnpjEmp'>#CNPJ_EMPRESA</Parameter>

@@ -3,12 +3,12 @@
 <Authentication user="linx_export" password="linx_export" />
 <ResponseFormat>xml</ResponseFormat>
 <Command>
-<Name>LinxMovimento</Name>
+<Name>LinxVendedores</Name>
 <Parameters>
 	<Parameter id="chave">aa96ce49-aae3-4e82-a147-a0217a34b4c2</Parameter>
 	<Parameter id='cnpjEmp'>#CNPJ_EMPRESA</Parameter>
-	<Parameter id="data_inicial">#DATA_INICIAL</Parameter>
-	<Parameter id="data_fim">#DATA_FIM</Parameter>
+	<Parameter id="data_upd_inicial">NULL</Parameter>
+	<Parameter id="data_upd_fim">NULL</Parameter>
 </Parameters>
 </Command>
 </LinxMicrovix>

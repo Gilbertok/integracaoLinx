@@ -16,6 +16,12 @@ public class DefaultDao {
 		this.instance = DBConnectERP.getInstance();
 	}
 	
+	public DefaultDao(String nomeTabela, String sqlCreate) {
+		this();
+		this.nomeTabela = nomeTabela;
+		this.sqlCreate = sqlCreate;
+	}
+
 	protected void criaCasoNaoExista() {
 		try {
 			String query = "SELECT * FROM " +nomeTabela;
@@ -33,7 +39,7 @@ public class DefaultDao {
 	
 	protected void limparTabela() {
 		try {
-			String query = "DELETE FROM " +nomeTabela;
+			String query = "TRUNCATE TABLE " +nomeTabela+ " DROP STORAGE";
 			PreparedStatement stmt = instance.prepareStatement(query);
 			stmt.executeQuery();
 			stmt.close();

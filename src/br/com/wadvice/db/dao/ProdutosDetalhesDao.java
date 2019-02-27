@@ -32,7 +32,6 @@ public class ProdutosDetalhesDao extends DefaultDao {
 	}
 	
 	public void gravarLista(List<ProdutosDetalhesModel> produtos) {
-		this.criaCasoNaoExista();
 		this.limparTabela();
 		for (ProdutosDetalhesModel produto : produtos) {
 			if(produto.getCodBarra() != null && !produto.getCodBarra().isEmpty()) {

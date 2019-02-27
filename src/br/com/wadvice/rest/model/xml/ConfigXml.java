@@ -1,5 +1,7 @@
 package br.com.wadvice.rest.model.xml;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,7 +13,7 @@ public class ConfigXml {
 	private String dbPassword;
 	private String dbServer;
 	private String dbDatabase;
-	private Integer tempoAtualizacao;
+	private Date dataBaseSync;
 	
 	@XmlElement(name="url_web_service")
 	public String getUrlWebService() {
@@ -58,13 +60,13 @@ public class ConfigXml {
 		this.dbDatabase = dbDatabase;
 	}
 
-	@XmlElement(name="srv_tempo")
-	public Integer getTempoAtualizacao() {
-		return tempoAtualizacao;
+	@XmlElement(name="dt_base_sync")
+	public Date getDataBaseSync() {
+		return dataBaseSync;
 	}
 
-	public void setTempoAtualizacao(Integer tempoAtualizacao) {
-		this.tempoAtualizacao = tempoAtualizacao;
+	public void setDataBaseSync(Date dataBaseSync) {
+		this.dataBaseSync = dataBaseSync;
 	}
-	
+
 }

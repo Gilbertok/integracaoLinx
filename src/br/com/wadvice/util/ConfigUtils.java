@@ -14,7 +14,7 @@ import br.com.wadvice.rest.model.xml.ConfigXml;
 public class ConfigUtils {
 	
 	private static final String URL_CONFIG_XML = "resources/config.xml";
-	private static final Logger logger = LoggerFactory.getLogger(ConfigXml.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
 	
 	private static ConfigXml config;
 	

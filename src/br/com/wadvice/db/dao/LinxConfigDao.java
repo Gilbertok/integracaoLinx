@@ -3,7 +3,11 @@ package br.com.wadvice.db.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import br.com.wadvice.rest.model.xml.ConfigXml;
+import br.com.wadvice.util.ConfigUtils;
 
 public class LinxConfigDao extends DefaultDao {
 	
@@ -14,6 +18,7 @@ public class LinxConfigDao extends DefaultDao {
 			"	 CONSTRAINT WAD_LINX_CONFIG_PK PRIMARY KEY (CNPJ_EMP, PORTAL) " + 
 			")";
 	private String nomeTabelaLinxConfigDao = "WAD_LINX_CONFIG";
+	protected SimpleDateFormat dtFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 	public LinxConfigDao() {
 		super();
@@ -78,7 +83,9 @@ public class LinxConfigDao extends DefaultDao {
 	}
 
 	public Calendar getDataUltSinc(Integer portal, String cnpj) {
+		ConfigXml config = ConfigUtils.getInstance();
 		Calendar dataUltSinc = Calendar.getInstance();
+		dataUltSinc.setTime(config.getDataBaseSync());
 		String query = "SELECT CONF.DATA_ULT_SINC FROM WAD_LINX_CONFIG CONF WHERE CONF.PORTAL = ? AND CONF.CNPJ_EMP = ?";
 		try {
 			PreparedStatement stmt = instance.prepareStatement(query);
