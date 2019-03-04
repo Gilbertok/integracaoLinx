@@ -86,7 +86,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.transacao = transacao;
 	}
 	public void setTransacao(String transacao) {
-		this.transacao = transacao != null ? Integer.parseInt(transacao) : 0;
+		this.transacao = transacao.isEmpty() ? 0 : Integer.parseInt(transacao);
 	}
 	public Integer getUsuario() {
 		return usuario;
@@ -95,7 +95,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.usuario = usuario;
 	}
 	public void setUsuario(String usuario) {
-		this.usuario = usuario != null ? Integer.parseInt(usuario) : 0;
+		this.usuario = usuario.isEmpty() ? 0 : Integer.parseInt(usuario);
 	}
 	public Integer getDocumento() {
 		return documento;
@@ -104,7 +104,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.documento = documento;
 	}
 	public void setDocumento(String documento) {
-		this.documento = documento != null ? Integer.parseInt(documento) : 0;
+		this.documento = documento.isEmpty() ? 0 : Integer.parseInt(documento);
 	}
 	public String getChaveNf() {
 		return chaveNf;
@@ -119,7 +119,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.ecf = ecf;
 	}
 	public void setEcf(String ecf) {
-		this.ecf = ecf != null ? Integer.parseInt(ecf) : 0;
+		this.ecf = ecf.isEmpty() ? 0 : Integer.parseInt(ecf);
 	}
 	public String getNrSerEcf() {
 		return nrSerEcf;
@@ -134,7 +134,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.modeloNf = modeloNf;
 	}
 	public void setModeloNf(String modeloNf) {
-		this.modeloNf = modeloNf != null ? Integer.parseInt(modeloNf) : 0;
+		this.modeloNf = modeloNf.isEmpty() ? 0 : Integer.parseInt(modeloNf);
 	}
 	public Date getDataDocuemnto() {
 		return dataDocuemnto;
@@ -169,7 +169,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.codigoCliente = codigoCliente;
 	}
 	public void setCodigoCliente(String codigoCliente) {
-		this.codigoCliente = codigoCliente != null ? Integer.parseInt(codigoCliente) : 0;
+		this.codigoCliente = codigoCliente.isEmpty() ? 0 : Integer.parseInt(codigoCliente);
 	}
 	public String getSerie() {
 		return serie;
@@ -196,7 +196,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.codigoVendedor = codigoVendedor;
 	}
 	public void setCodigoVendedor(String codigoVendedor) {
-		this.codigoVendedor = codigoVendedor != null ? Integer.parseInt(codigoVendedor) : 0;
+		this.codigoVendedor = codigoVendedor.isEmpty() ? 0 : Integer.parseInt(codigoVendedor);
 	}
 	public Float getQuantidade() {
 		return quantidade;
@@ -205,7 +205,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.quantidade = quantidade;
 	}
 	public void setQuantidade(String quantidade) {
-		this.quantidade = quantidade != null ? Float.parseFloat(quantidade) : 0;
+		this.quantidade = quantidade.isEmpty() ? 0 : Float.parseFloat(quantidade);
 	}
 	public Float getPrecoCusto() {
 		return precoCusto;
@@ -214,7 +214,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.precoCusto = precoCusto;
 	}
 	public void setPrecoCusto(String precoCusto) {
-		this.precoCusto = precoCusto != null ? Float.parseFloat(precoCusto) : 0;
+		this.precoCusto = precoCusto.isEmpty() ? 0 : Float.parseFloat(precoCusto);
 	}
 	public Float getValorLiquido() {
 		return valorLiquido;
@@ -223,7 +223,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorLiquido = valorLiquido;
 	}
 	public void setValorLiquido(String valorLiquido) {
-		this.valorLiquido = valorLiquido != null ? Float.parseFloat(valorLiquido) : 0;
+		this.valorLiquido = valorLiquido.isEmpty() ? 0 : Float.parseFloat(valorLiquido);
 	}
 	public Float getDesconto() {
 		return desconto;
@@ -232,7 +232,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.desconto = desconto;
 	}
 	public void setDesconto(String desconto) {
-		this.desconto = desconto != null ? Float.parseFloat(desconto) : 0;
+		this.desconto = desconto.isEmpty() ? 0 : Float.parseFloat(desconto);
 	}
 	public String getCstIcms() {
 		return cstIcms;
@@ -265,7 +265,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorIcms = valorIcms;
 	}
 	public void setValorIcms(String valorIcms) {
-		this.valorIcms = valorIcms != null ? Float.parseFloat(valorIcms) : 0;
+		this.valorIcms = valorIcms.isEmpty() ? 0 : Float.parseFloat(valorIcms);
 	}
 	public Float getAliquotaIcms() {
 		return aliquotaIcms;
@@ -274,7 +274,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.aliquotaIcms = aliquotaIcms;
 	}
 	public void setAliquotaIcms(String aliquotaIcms) {
-		this.aliquotaIcms = aliquotaIcms != null ? Float.parseFloat(aliquotaIcms) : 0;
+		this.aliquotaIcms = aliquotaIcms.isEmpty() ? 0 : Float.parseFloat(aliquotaIcms);
 	}
 	public Float getBaseIcms() {
 		return baseIcms;
@@ -283,7 +283,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.baseIcms = baseIcms;
 	}
 	public void setBaseIcms(String baseIcms) {
-		this.baseIcms = baseIcms != null ? Float.parseFloat(baseIcms) : 0;
+		this.baseIcms = baseIcms.isEmpty() ? 0 : Float.parseFloat(baseIcms);
 	}
 	public Float getValorPis() {
 		return valorPis;
@@ -292,7 +292,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorPis = valorPis;
 	}
 	public void setValorPis(String valorPis) {
-		this.valorPis = valorPis != null ? Float.parseFloat(valorPis) : 0;
+		this.valorPis = valorPis.isEmpty() ? 0 : Float.parseFloat(valorPis);
 	}
 	public Float getAliquotaPis() {
 		return aliquotaPis;
@@ -301,7 +301,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.aliquotaPis = aliquotaPis;
 	}
 	public void setAliquotaPis(String aliquotaPis) {
-		this.aliquotaPis = aliquotaPis != null ? Float.parseFloat(aliquotaPis) : 0;
+		this.aliquotaPis = aliquotaPis.isEmpty() ? 0 : Float.parseFloat(aliquotaPis);
 	}
 	public Float getBasePis() {
 		return basePis;
@@ -310,7 +310,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.basePis = basePis;
 	}
 	public void setBasePis(String basePis) {
-		this.basePis = basePis != null ? Float.parseFloat(basePis) : 0;
+		this.basePis = basePis.isEmpty() ? 0 : Float.parseFloat(basePis);
 	}
 	public Float getValorCofins() {
 		return valorCofins;
@@ -319,7 +319,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorCofins = valorCofins;
 	}
 	public void setValorCofins(String valorCofins) {
-		this.valorCofins = valorCofins != null ? Float.parseFloat(valorCofins) : 0;
+		this.valorCofins = valorCofins.isEmpty() ? 0 : Float.parseFloat(valorCofins);
 	}
 	public Float getAliquotaCofins() {
 		return aliquotaCofins;
@@ -328,7 +328,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.aliquotaCofins = aliquotaCofins;
 	}
 	public void setAliquotaCofins(String aliquotaCofins) {
-		this.aliquotaCofins = aliquotaCofins != null ? Float.parseFloat(aliquotaCofins) : 0;
+		this.aliquotaCofins = aliquotaCofins.isEmpty() ? 0 : Float.parseFloat(aliquotaCofins);
 	}
 	public Float getBaseCofins() {
 		return baseCofins;
@@ -337,7 +337,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.baseCofins = baseCofins;
 	}
 	public void setBaseCofins(String baseCofins) {
-		this.baseCofins = baseCofins != null ? Float.parseFloat(baseCofins) : 0;
+		this.baseCofins = baseCofins.isEmpty() ? 0 : Float.parseFloat(baseCofins);
 	}
 	public Float getValorIcmsSt() {
 		return valorIcmsSt;
@@ -346,7 +346,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorIcmsSt = valorIcmsSt;
 	}
 	public void setValorIcmsSt(String valorIcmsSt) {
-		this.valorIcmsSt = valorIcmsSt != null ? Float.parseFloat(valorIcmsSt) : 0;
+		this.valorIcmsSt = valorIcmsSt.isEmpty() ? 0 : Float.parseFloat(valorIcmsSt);
 	}
 	public Float getAliquotaIcmsSt() {
 		return aliquotaIcmsSt;
@@ -364,7 +364,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.baseIcmsSt = baseIcmsSt;
 	}
 	public void setBaseIcmsSt(String baseIcmsSt) {
-		this.baseIcmsSt = baseIcmsSt != null ? Float.parseFloat(baseIcmsSt) : 0;
+		this.baseIcmsSt = baseIcmsSt.isEmpty() ? 0 : Float.parseFloat(baseIcmsSt);
 	}
 	public Float getValorIPI() {
 		return valorIPI;
@@ -373,7 +373,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorIPI = valorIPI;
 	}
 	public void setValorIPI(String valorIPI) {
-		this.valorIPI = valorIPI != null ? Float.parseFloat(valorIPI) : 0;
+		this.valorIPI = valorIPI.isEmpty() ? 0 : Float.parseFloat(valorIPI);
 	}
 	public Float getAliquotaIPI() {
 		return aliquotaIPI;
@@ -382,7 +382,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.aliquotaIPI = aliquotaIPI;
 	}
 	public void setAliquotaIPI(String aliquotaIPI) {
-		this.aliquotaIPI = aliquotaIPI != null ? Float.parseFloat(aliquotaIPI) : 0;
+		this.aliquotaIPI = aliquotaIPI.isEmpty() ? 0 : Float.parseFloat(aliquotaIPI);
 	}
 	public Float getBaseIPI() {
 		return baseIPI;
@@ -391,7 +391,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.baseIPI = baseIPI;
 	}
 	public void setBaseIPI(String baseIPI) {
-		this.baseIPI = baseIPI != null ? Float.parseFloat(baseIPI) : 0;
+		this.baseIPI = baseIPI.isEmpty() ? 0 : Float.parseFloat(baseIPI);
 	}
 	public Float getValorTotal() {
 		return valorTotal;
@@ -400,7 +400,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.valorTotal = valorTotal;
 	}
 	public void setValorTotal(String valorTotal) {
-		this.valorTotal = valorTotal != null ? Float.parseFloat(valorTotal) : 0;
+		this.valorTotal = valorTotal.isEmpty() ? 0 : Float.parseFloat(valorTotal);
 	}
 	public int getFormaDinheiro() {
 		return formaDinheiro;
@@ -409,7 +409,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaDinheiro = formaDinheiro;
 	}
 	public void setFormaDinheiro(String formaDinheiro) {
-		this.formaDinheiro = formaDinheiro != null ? Integer.parseInt(formaDinheiro) : 0;
+		this.formaDinheiro = formaDinheiro.isEmpty() ? 0 : Integer.parseInt(formaDinheiro);
 	}
 	public Float getTotalDinheiro() {
 		return totalDinheiro;
@@ -418,7 +418,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalDinheiro = totalDinheiro;
 	}
 	public void setTotalDinheiro(String totalDinheiro) {
-		this.totalDinheiro = totalDinheiro != null ? Float.parseFloat(totalDinheiro) : 0;
+		this.totalDinheiro = totalDinheiro.isEmpty() ? 0 : Float.parseFloat(totalDinheiro);
 	}
 	public int getFormaCheque() {
 		return formaCheque;
@@ -427,7 +427,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaCheque = formaCheque;
 	}
 	public void setFormaCheque(String formaCheque) {
-		this.formaCheque = formaCheque != null ? Integer.parseInt(formaCheque) : 0;
+		this.formaCheque = formaCheque.isEmpty() ? 0 : Integer.parseInt(formaCheque);
 	}
 	public Float getTotalCheque() {
 		return totalCheque;
@@ -436,7 +436,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalCheque = totalCheque;
 	}
 	public void setTotalCheque(String totalCheque) {
-		this.totalCheque = totalCheque != null ? Float.parseFloat(totalCheque) : 0;
+		this.totalCheque = totalCheque.isEmpty() ? 0 : Float.parseFloat(totalCheque);
 	}
 	public int getFormaCartao() {
 		return formaCartao;
@@ -445,7 +445,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaCartao = formaCartao;
 	}
 	public void setFormaCartao(String formaCartao) {
-		this.formaCartao = formaCartao != null ? Integer.parseInt(formaCartao) : 0;
+		this.formaCheque = formaCartao.isEmpty() ? 0 : Integer.parseInt(formaCartao);
 	}
 	public Float getTotalCartao() {
 		return totalCartao;
@@ -454,7 +454,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalCartao = totalCartao;
 	}
 	public void setTotalCartao(String totalCartao) {
-		this.totalCartao = totalCartao != null ? Float.parseFloat(totalCartao) : 0;
+		this.totalCartao = totalCartao.isEmpty() ? 0 : Float.parseFloat(totalCartao);
 	}
 	public int getFormaCrediario() {
 		return formaCrediario;
@@ -463,7 +463,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaCrediario = formaCrediario;
 	}
 	public void setFormaCrediario(String formaCrediario) {
-		this.formaCrediario = formaCrediario != null ? Integer.parseInt(formaCrediario) : 0;
+		this.formaCrediario = formaCrediario.isEmpty() ? 0 : Integer.parseInt(formaCrediario);
 	}
 	public Float getTotalCrediario() {
 		return totalCrediario;
@@ -472,7 +472,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalCrediario = totalCrediario;
 	}
 	public void setTotalCrediario(String totalCrediario) {
-		this.totalCrediario = totalCrediario != null ? Float.parseFloat(totalCrediario) : 0;
+		this.totalCrediario = totalCrediario.isEmpty() ? 0 : Float.parseFloat(totalCrediario);
 	}
 	public int getFormaConvenio() {
 		return formaConvenio;
@@ -481,7 +481,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaConvenio = formaConvenio;
 	}
 	public void setFormaConvenio(String formaConvenio) {
-		this.formaConvenio = formaConvenio != null ? Integer.parseInt(formaConvenio) : 0;
+		this.formaConvenio = formaConvenio.isEmpty() ? 0 : Integer.parseInt(formaConvenio);
 	}
 	public Float getTotalConvenio() {
 		return totalConvenio;
@@ -490,7 +490,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalConvenio = totalConvenio;
 	}
 	public void setTotalConvenio(String totalConvenio) {
-		this.totalConvenio = totalConvenio != null ? Float.parseFloat(totalConvenio) : 0;
+		this.totalConvenio = totalConvenio.isEmpty() ? 0 : Float.parseFloat(totalConvenio);
 	}
 	public Float getFrete() {
 		return frete;
@@ -499,7 +499,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.frete = frete;
 	}
 	public void setFrete(String frete) {
-		this.frete = frete != null ? Float.parseFloat(frete) : 0;
+		this.frete = frete.isEmpty() ? 0 : Float.parseFloat(frete);
 	}
 	public String getOperacao() {
 		return operacao;
@@ -568,7 +568,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.precoUnitario = precoUnitario;
 	}
 	public void setPrecoUnitario(String precoUnitario) {
-		this.precoUnitario = precoUnitario != null ? Float.parseFloat(precoUnitario) : 0;
+		this.precoUnitario = precoUnitario.isEmpty() ? 0 : Float.parseFloat(precoUnitario);
 	}
 	public Date getHoraLancamento() {
 		return horaLancamento;
@@ -596,7 +596,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.tabelaPreco = tabelaPreco;
 	}
 	public void setTabelaPreco(String tabelaPreco) {
-		this.tabelaPreco = tabelaPreco != null ? Integer.parseInt(tabelaPreco) : 0;
+		this.tabelaPreco = tabelaPreco.isEmpty() ? 0 : Integer.parseInt(tabelaPreco);
 	}
 	public String getNomeTabelaPreco() {
 		return nomeTabelaPreco;
@@ -631,11 +631,11 @@ public class MovimentosNfModel extends LinxModel {
 	public void setDataUpdate(Date dataUpdate) {
 		this.dataUpdate = dataUpdate;
 	}
-	public void setDataUpdate(String dataUpdate) {
-		try {
+	public void setDataUpdate(String dataUpdate) throws ParseException {
+		if (dataUpdate.isEmpty()) {
+			this.dataUpdate = null;
+		} else {
 			this.dataUpdate = dtFormatter.parse(dataUpdate);
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
 	}
 	public int getFormaChequePrazo() {
@@ -645,7 +645,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.formaChequePrazo = formaChequePrazo;
 	}
 	public void setFormaChequePrazo(String formaChequePrazo) {
-		this.formaChequePrazo = formaChequePrazo != null ? Integer.parseInt(formaChequePrazo) : 0;
+		this.formaChequePrazo = formaChequePrazo.isEmpty() ? 0 : Integer.parseInt(formaChequePrazo);
 	}
 	public Float getTotalChequePrazo() {
 		return totalChequePrazo;
@@ -654,7 +654,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.totalChequePrazo = totalChequePrazo;
 	}
 	public void setTotalChequePrazo(String totalChequePrazo) {
-		this.totalChequePrazo = totalChequePrazo != null ? Float.parseFloat(totalChequePrazo) : 0;
+		this.totalChequePrazo = totalChequePrazo.isEmpty() ? 0 : Float.parseFloat(totalChequePrazo);
 	}
 	public Float getCodigoNaturezaOperacao() {
 		return codigoNaturezaOperacao;
@@ -663,7 +663,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.codigoNaturezaOperacao = codigoNaturezaOperacao;
 	}
 	public void setCodigoNaturezaOperacao(String codigoNaturezaOperacao) {
-		this.codigoNaturezaOperacao = codigoNaturezaOperacao != null ? Float.parseFloat(codigoNaturezaOperacao) : 0;
+		this.codigoNaturezaOperacao = codigoNaturezaOperacao.isEmpty() ? 0 : Float.parseFloat(codigoNaturezaOperacao);
 	}
 	public Float getPrecoTabelaEpoca() {
 		return precoTabelaEpoca;
@@ -672,7 +672,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.precoTabelaEpoca = precoTabelaEpoca;
 	}
 	public void setPrecoTabelaEpoca(String precoTabelaEpoca) {
-		this.precoTabelaEpoca = precoTabelaEpoca != null ? Float.parseFloat(precoTabelaEpoca) : 0;
+		this.precoTabelaEpoca = precoTabelaEpoca.isEmpty() ? 0 : Float.parseFloat(precoTabelaEpoca);
 	}
 	public Float getDescontoTotalItem() {
 		return descontoTotalItem;
@@ -681,7 +681,7 @@ public class MovimentosNfModel extends LinxModel {
 		this.descontoTotalItem = descontoTotalItem;
 	}
 	public void setDescontoTotalItem(String descontoTotalItem) {
-		this.descontoTotalItem = descontoTotalItem != null ? Float.parseFloat(descontoTotalItem) : 0;
+		this.descontoTotalItem = descontoTotalItem.isEmpty() ? 0 : Float.parseFloat(descontoTotalItem);
 	}
 	public String getConferido() {
 		return conferido;

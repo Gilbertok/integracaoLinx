@@ -1,7 +1,6 @@
 package br.com.wadvice;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,7 +23,7 @@ public class TaskRun {
 	private static final Logger logger = LoggerFactory.getLogger(TaskRun.class);
 	
 	public static void main(String[] args) {
-		logger.info("- Execucao Inicio -- "+ new Date());
+		logger.info("---------- Execucao Inicio ---------- ");
 		DateUtils dateUtils = new DateUtils();
 		Calendar dataAtual = Calendar.getInstance();
 		List<GrupoLojasModel> lojas = new SincLojas().getData();
@@ -32,21 +31,21 @@ public class TaskRun {
 			logger.info(" Loja -------- "+ loja.getCnpjEmpresa()+ " - "+ loja.getNomeEmpresa());
 			LinxConfigDao conf = new LinxConfigDao();
 			new SincProdutoDetalhe().getData(loja.getCnpjEmpresa());
-			new SincClientesFornec().getData(loja.getCnpjEmpresa());
-			new SincClientesFornecContatos().getData(loja.getCnpjEmpresa());
 			new SincVendedores().getData(loja.getCnpjEmpresa());
 			new SincVendedoresMetas().getData(loja.getCnpjEmpresa());
+			new SincClientesFornec().getData(loja.getCnpjEmpresa(), null);
+			new SincClientesFornecContatos().getData(loja.getCnpjEmpresa(), null);
 			
 			Calendar dataUltSinc = conf.getDataUltSinc(loja.getPortal(), loja.getCnpjEmpresa());
 			while (dateUtils.before(dataUltSinc, dataAtual)) {
 				new SincMovimentosNF().getData(loja.getCnpjEmpresa(), dataUltSinc);
 				new SincMovimentosNfTroca().getData(loja.getCnpjEmpresa(), dataUltSinc);
 				
-				dataUltSinc = dateUtils.addDia(dataUltSinc);
+				dataUltSinc = dateUtils.addMes(dataUltSinc);
 			}
 			conf.atualizaDataSinc(loja.getPortal(), loja.getCnpjEmpresa());
 		}
-		logger.info(" Execucao Fim -------- ");
+		logger.info("---------- Execucao Fim ---------- ");
 	}
 
 	

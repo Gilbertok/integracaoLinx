@@ -3,8 +3,6 @@ package br.com.wadvice.rest;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
-
 import br.com.wadvice.rest.model.linx.MovimentosNfModel;
 import br.com.wadvice.rest.model.xml.ConfigXml;
 import br.com.wadvice.util.ConfigUtils;
@@ -27,15 +25,15 @@ public class SincMovimentosNF extends SyncRest {
 			List<MovimentosNfModel> movimentos = this.postData(config.getUrlWebService(), cnpjEmpresa, data);
 			logger.debug(movimentos.toString());
 			util.gravar(movimentos);
-			logger.info("Movimentos NF syncronizados - "+data.getTime());
+			logger.info("Movimentos NF syncronizados - "+this.logData(data));
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.warn("Movimentos NF erro: "+e.getMessage());
 		}
 	}
 	
-	public List<MovimentosNfModel> postData(String url, String cnpjEmpresa, Calendar data) throws JAXBException {
-		String dados = super.post(url, cnpjEmpresa, null);
+	public List<MovimentosNfModel> postData(String url, String cnpjEmpresa, Calendar data) throws Exception {
+		String dados = super.post(url, cnpjEmpresa, data);
 		return util.convertStringXmlToObjects(dados);
 	}
 

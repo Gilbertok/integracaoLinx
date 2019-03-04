@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
-
 import br.com.wadvice.db.dao.MovimentosNfDao;
 import br.com.wadvice.rest.model.linx.MovimentosNfModel;
 import br.com.wadvice.rest.model.xml.DadosXml;
@@ -18,7 +16,7 @@ public class LinxMovimentosNfUtil extends ConvertUtil {
 		dao.gravarLista(movimentos);
 	}
 
-	public List<MovimentosNfModel> convertStringXmlToObjects(String xml) throws JAXBException {
+	public List<MovimentosNfModel> convertStringXmlToObjects(String xml) throws Exception {
 		List<MovimentosNfModel> movimentos = new ArrayList<MovimentosNfModel>();
 		Microvix result = super.parseXml(xml);
 		String[] cabecalhos = result.getResponseData().getChave().getValor();

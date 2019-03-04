@@ -1,5 +1,6 @@
 package br.com.wadvice.rest;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.apache.http.HttpResponse;
@@ -21,6 +22,7 @@ public class SyncRest {
 	protected String URL_FILE_XML;
 	protected String INTEGRACAO;
 	protected Logger logger;
+	protected SimpleDateFormat dtFormatterLog = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public SyncRest(String urlFileXml, Class<?> class1) {
 		this.URL_FILE_XML = urlFileXml;
@@ -37,7 +39,8 @@ public class SyncRest {
 	    try {
 	    	DateUtils dateUtils = new DateUtils();
 	        HttpPost httppost = new HttpPost(url.toString());
-	        httppost.setHeader("Content-type", "application/xml");
+	        httppost.setHeader(new BasicHeader(HTTP.CONTENT_TYPE, "text/xml"));
+	        
 	        String xmlEntity = XmlUtils.getXml(URL_FILE_XML);
 	        if (cnpjEmpresa != null) {
 	        	xmlEntity = xmlEntity.replaceAll("#CNPJ_EMPRESA", cnpjEmpresa);
@@ -46,14 +49,14 @@ public class SyncRest {
 	        	xmlEntity = xmlEntity.replaceAll("#INTEGRACAO", INTEGRACAO);
 	        }
 	        if (data == null) {
-	        	xmlEntity = xmlEntity.replaceAll("#DATA_INICIAL", "NULL");
-	        	xmlEntity = xmlEntity.replaceAll("#DATA_FIM", "NULL");
+	        	xmlEntity = xmlEntity.replaceAll("#DATA_INICIAL", dateUtils.getInicioConfig());
+	        	xmlEntity = xmlEntity.replaceAll("#DATA_FIM", dateUtils.getFimMes(null));
 	        } else {
-	        	xmlEntity = xmlEntity.replaceAll("#DATA_INICIAL", dateUtils.getHoraInicial(data));
-	        	xmlEntity = xmlEntity.replaceAll("#DATA_FIM", dateUtils.getHoraFim(data));
+	        	xmlEntity = xmlEntity.replaceAll("#DATA_INICIAL", dateUtils.getInicioMes(data));
+	        	xmlEntity = xmlEntity.replaceAll("#DATA_FIM", dateUtils.getFimMes(data));
 	        }
 			StringEntity se = new StringEntity(xmlEntity);
-			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/xml"));
+			se.setChunked(true);
 			httppost.setEntity(se); 
 			HttpResponse response = client.execute(httppost);
 			if (response.getStatusLine().getStatusCode() == 200) {
@@ -68,6 +71,11 @@ public class SyncRest {
 	    return null;
 	}
 	
+	
+	protected String logData(Calendar data) {
+		DateUtils dateUtils = new DateUtils();
+		return dtFormatterLog.format(dateUtils.getInicioMesDate(data)) +" a "+dtFormatterLog.format(dateUtils.getFimMesDate(data));
+	}
 	
 
 }

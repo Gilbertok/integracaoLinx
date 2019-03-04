@@ -5,5 +5,5 @@
 	<db_database>XE</db_database>
 	<db_user>systextil</db_user>
 	<db_password>oracle</db_password>
-	<dt_base_sync>2019-02-01</dt_base_sync>
+	<dt_base_sync>2016-01-05</dt_base_sync>
 </Config>

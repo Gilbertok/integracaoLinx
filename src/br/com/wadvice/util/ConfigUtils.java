@@ -32,13 +32,13 @@ public class ConfigUtils {
 			StringReader reader = new StringReader(XmlUtils.getXml(URL_CONFIG_XML));
 			JAXBContext context = JAXBContext.newInstance(ConfigXml.class);
 			config = (ConfigXml) context.createUnmarshaller().unmarshal(reader);
-			logger.info("--- Arquivo de configuraçãp OK -----");
+			logger.info("--- Arquivo de configuracao OK -----");
 		} catch (JAXBException e) {
 			e.printStackTrace();
-			logger.error("Erro ao buscar arquivo de configuração "+e.getMessage());
+			logger.error("Erro ao buscar arquivo de configuracao "+e.getMessage());
 		} catch (IOException e2) {
 			e2.printStackTrace();
-			logger.error("Erro ao buscar arquivo de configuração "+e2.getMessage());
+			logger.error("Erro ao buscar arquivo de configuracao "+e2.getMessage());
 		}
 		return config;
 	}

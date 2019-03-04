@@ -11,7 +11,7 @@ import br.com.wadvice.rest.model.linx.ClientesFornecModel;
 public class ClientesFornecDao extends DefaultDao {
 	
 	private static String sqlCreate = "CREATE TABLE WAD_LINX_CLI_FORN ( "+
-									"    PORTAL VARCHAR2(20 BYTE), "+
+									"   PORTAL VARCHAR2(20 BYTE), "+
 									"	COD_CLIENTE VARCHAR2(20 BYTE), "+
 									"	RAZAO_CLIENTE VARCHAR2(60 BYTE), "+
 									"	NOME_CLIENTE VARCHAR2(60 BYTE), "+
@@ -43,8 +43,8 @@ public class ClientesFornecDao extends DefaultDao {
 									"	TIPO_CADASTRO VARCHAR2(1 BYTE), "+
 									"	ID_ESTADO_CIVIL NUMBER(1,0), "+
 									"	FAX_CLIENTE VARCHAR2(50 BYTE), "+
-									"	SITE_CLIENTE VARCHAR2(20 BYTE), "+
-									"	EMPRESA_CADASTRO NUMBER(1,0), "+
+									"	SITE_CLIENTE VARCHAR2(60 BYTE), "+
+									"	EMPRESA_CADASTRO NUMBER(*, 0), "+
 									"	CONSTRAINT WAD_LINX_CLI_FORN_PK PRIMARY KEY (DOC_CLIENTE))";
 	private static String nomeTabela = "WAD_LINX_CLI_FORN";
 	
@@ -183,11 +183,10 @@ public class ClientesFornecDao extends DefaultDao {
 
 	private boolean exists(ClientesFornecModel cliente) {
 		Boolean exists = false;
-		String query = "SELECT 1 FROM WAD_LINX_CLI_FORN WHERE DOC_CLIENTE = ? AND EMPRESA_CADASTRO = ? ";
+		String query = "SELECT 1 FROM WAD_LINX_CLI_FORN WHERE DOC_CLIENTE = ? ";
 		try {
 			PreparedStatement stmt = instance.prepareStatement(query);
 			stmt.setString(1, cliente.getCpfCnpj());
-			stmt.setInt(2, cliente.getEmpresa());
 			stmt.setMaxRows(1);
 			ResultSet res = stmt.executeQuery();
 			if(res.next()) {

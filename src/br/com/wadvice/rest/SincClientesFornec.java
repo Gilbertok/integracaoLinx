@@ -1,5 +1,6 @@
 package br.com.wadvice.rest;
 
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.wadvice.rest.model.linx.ClientesFornecModel;
@@ -18,10 +19,10 @@ public class SincClientesFornec extends SyncRest {
 		util = new LinxClientesFornecUtil();
 	}
 
-	public void getData(String cnpjEmpresa) {
+	public void getData(String cnpjEmpresa, Calendar data) {
 		try {
 			ConfigXml config = ConfigUtils.getInstance();
-			List<ClientesFornecModel> clientes = this.postData(config.getUrlWebService(), cnpjEmpresa);
+			List<ClientesFornecModel> clientes = this.postData(config.getUrlWebService(), cnpjEmpresa, data);
 			logger.debug(clientes.toString());
 			util.gravar(clientes);
 			logger.info("Cliente/Fornecedores syncronizados ");
@@ -31,8 +32,8 @@ public class SincClientesFornec extends SyncRest {
 		}
 	}
 
-	private List<ClientesFornecModel> postData(String url, String cnpjEmpresa) throws Exception {
-		String dados = super.post(url, cnpjEmpresa, null);
+	private List<ClientesFornecModel> postData(String url, String cnpjEmpresa, Calendar data) throws Exception {
+		String dados = super.post(url, cnpjEmpresa, data);
 		return util.convertStringXmlToObjects(dados);
 	}
 

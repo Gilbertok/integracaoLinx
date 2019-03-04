@@ -25,7 +25,7 @@ public class LinxClientesFornecUtil extends ConvertUtil {
 					cliente.setPortal(valor);
 					continue;
 				case "cod_cliente":
-					cliente.setCodigoCliente(valor);
+					cliente.setCodigoCliente(valor.trim());
 					continue;
 				case "razao_cliente":
 					cliente.setRazao(valor);
@@ -34,7 +34,7 @@ public class LinxClientesFornecUtil extends ConvertUtil {
 					cliente.setNome(valor);
 					continue;
 				case "doc_cliente":
-					cliente.setCpfCnpj(valor);
+					cliente.setCpfCnpj(valor.trim());
 					continue;
 				case "tipo_cliente":
 					cliente.setTipoCliente(valor);

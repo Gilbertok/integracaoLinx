@@ -27,7 +27,7 @@ public class SincMovimentosNfTroca extends SyncRest {
 			List<MovimentosNfTrocaModel> trocas = this.postData(config.getUrlWebService(), cnpjEmpresa, data);
 			logger.debug(trocas.toString());
 			util.gravar(trocas);
-			logger.info("Movimentos NF Troca syncronizados - "+data.getTime());
+			logger.info("Movimentos NF Troca syncronizados - "+this.logData(data));
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.warn("Movimentos NF Troca erro: "+e.getMessage());

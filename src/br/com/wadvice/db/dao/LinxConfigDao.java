@@ -12,11 +12,11 @@ import br.com.wadvice.util.ConfigUtils;
 public class LinxConfigDao extends DefaultDao {
 	
 	private String sqlCreateLinxConfigDao = "CREATE TABLE WAD_LINX_CONFIG( " + 
-			"    PORTAL NUMBER NOT NULL ENABLE, " + 
-			"	 CNPJ_EMP VARCHAR2(14 BYTE) NOT NULL ENABLE, " + 
-			"	 DATA_ULT_SINC DATE NOT NULL ENABLE, " + 
-			"	 CONSTRAINT WAD_LINX_CONFIG_PK PRIMARY KEY (CNPJ_EMP, PORTAL) " + 
-			")";
+											"    PORTAL NUMBER NOT NULL ENABLE, " + 
+											"	 CNPJ_EMP VARCHAR2(14 BYTE) NOT NULL ENABLE, " + 
+											"	 DATA_ULT_SINC DATE NOT NULL ENABLE, " + 
+											"	 CONSTRAINT WAD_LINX_CONFIG_PK PRIMARY KEY (CNPJ_EMP, PORTAL) " + 
+											")";
 	private String nomeTabelaLinxConfigDao = "WAD_LINX_CONFIG";
 	protected SimpleDateFormat dtFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -44,7 +44,7 @@ public class LinxConfigDao extends DefaultDao {
 		}
 		return exists;
 	}
-
+	
 	public void atualizaDataSinc(Integer portal, String cnpj) {
 		this.criaCasoNaoExista();
 		try {
@@ -83,6 +83,7 @@ public class LinxConfigDao extends DefaultDao {
 	}
 
 	public Calendar getDataUltSinc(Integer portal, String cnpj) {
+		this.criaCasoNaoExista();
 		ConfigXml config = ConfigUtils.getInstance();
 		Calendar dataUltSinc = Calendar.getInstance();
 		dataUltSinc.setTime(config.getDataBaseSync());

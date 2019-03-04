@@ -2,6 +2,7 @@ package br.com.wadvice.db.dao;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,12 +29,33 @@ public class ClientesFornecContatosDao extends DefaultDao {
 	}
 
 	public void gravarLista(List<ClientesFornecContatosModel> contatos) throws SQLException {
-		this.limparTabela();
+		this.criaCasoNaoExista();
 		for (ClientesFornecContatosModel contato : contatos) {
 			if(contato.getCodigoCliente() != null && !contato.getCodigoCliente().isEmpty()) {
-				this.insert(contato);
+				if (!this.exists(contato)) {
+					this.insert(contato);
+				}
 			}
 		}
+	}
+
+	private boolean exists(ClientesFornecContatosModel contato) {
+		Boolean exists = false;
+		String query = "SELECT 1 FROM WAD_LINX_CLI_FORN WHERE COD_CLIENTE = ? AND FONE1_CONTATO = ? ";
+		try {
+			PreparedStatement stmt = instance.prepareStatement(query);
+			stmt.setString(1, contato.getCodigoCliente());
+			stmt.setString(2, contato.getTelefone1());
+			stmt.setMaxRows(1);
+			ResultSet res = stmt.executeQuery();
+			if(res.next()) {
+				exists = true;
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return exists;
 	}
 
 	private void insert(ClientesFornecContatosModel contato) throws SQLException {
