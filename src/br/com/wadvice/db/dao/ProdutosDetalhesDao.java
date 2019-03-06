@@ -20,7 +20,6 @@ public class ProdutosDetalhesDao extends DefaultDao {
 													"	ID_CONFIG_TRIBUTARIA NUMBER(*,0), " + 
 													"	DESC_CONFIG_TRIBUTARIA VARCHAR2(30 BYTE), " + 
 													"	DESPESAS1 FLOAT(126), " + 
-													"	DATA_ATUALIZACAO DATE NOT NULL," +
 													"	CONSTRAINT WAD_LINX_PROD_DET_PK PRIMARY KEY (COD_BARRA, CNPJ_EMP)" + 
 													")";
 	private String nomeTabelaProdutosDetalhesDao = "WAD_LINX_PROD_DET";
@@ -31,8 +30,8 @@ public class ProdutosDetalhesDao extends DefaultDao {
 		this.setSqlCreate(sqlCreateProdutosDetalhesDao);
 	}
 	
-	public void gravarLista(List<ProdutosDetalhesModel> produtos) {
-		this.limparTabela();
+	public void gravarLista(String cnpjEmpresa, List<ProdutosDetalhesModel> produtos) {
+		this.limparTabela(cnpjEmpresa);
 		for (ProdutosDetalhesModel produto : produtos) {
 			if(produto.getCodBarra() != null && !produto.getCodBarra().isEmpty()) {
 				try {
@@ -47,9 +46,9 @@ public class ProdutosDetalhesDao extends DefaultDao {
 
 	private void insert(ProdutosDetalhesModel produto) throws SQLException {
 		String query = "INSERT INTO WAD_LINX_PROD_DET " + 
-						"    (PORTAL, CNPJ_EMP, COD_BARRA, COD_PRODUTO, ID_CONFIG_TRIBUTARIA, DESC_CONFIG_TRIBUTARIA, DESPESAS1, CUSTO_MEDIO, PRECO_CUSTO, PRECO_VENDA, QUANTIDADE, DATA_ATUALIZACAO) " + 
+						"    (PORTAL, CNPJ_EMP, COD_BARRA, COD_PRODUTO, ID_CONFIG_TRIBUTARIA, DESC_CONFIG_TRIBUTARIA, DESPESAS1, CUSTO_MEDIO, PRECO_CUSTO, PRECO_VENDA, QUANTIDADE) " + 
 						"VALUES " + 
-						"    (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+						"    (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement prepareStatement = instance.prepareStatement(query);
 		prepareStatement.setInt(1, produto.getPortal());
 		prepareStatement.setString(2, produto.getCnpjEmpresa());

@@ -1,5 +1,6 @@
 package br.com.wadvice.rest;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -60,7 +61,7 @@ public class SyncRest {
 			httppost.setEntity(se); 
 			HttpResponse response = client.execute(httppost);
 			if (response.getStatusLine().getStatusCode() == 200) {
-				return EntityUtils.toString(response.getEntity());
+				return EntityUtils.toString(response.getEntity(), StandardCharsets.ISO_8859_1);
 			} else {
 				logger.warn("Erro ao buscar "+URL_FILE_XML+" "+response.getStatusLine().getStatusCode());
 			}

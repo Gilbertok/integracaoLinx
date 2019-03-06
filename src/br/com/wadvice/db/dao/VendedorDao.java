@@ -10,7 +10,8 @@ import br.com.wadvice.rest.model.linx.VendedoresModel;
 public class VendedorDao extends DefaultDao {
 	
 	private static String sqlCreate = "CREATE TABLE WAD_LINX_VENDEDOR (	"+
-										"    PORTAL VARCHAR2(20 BYTE), "+
+										"   PORTAL VARCHAR2(20 BYTE), "+
+										"	CNPJ_EMP VARCHAR2(14 BYTE) NOT NULL ENABLE, "+
 										"	COD_VENDEDOR VARCHAR2(20 BYTE) NOT NULL ENABLE, "+
 										"	NOME_VENDEDOR VARCHAR2(50 BYTE), "+
 										"	TIPO_VENDEDOR VARCHAR2(1 BYTE), "+
@@ -28,15 +29,15 @@ public class VendedorDao extends DefaultDao {
 										"	ATIVO VARCHAR2(1 BYTE), "+
 										"	DATA_ADMISSAO DATE, "+
 										"	DATA_SAIDA DATE, "+
-										"	CONSTRAINT WAD_LINX_VENDEDOR_PK PRIMARY KEY (COD_VENDEDOR))";
+										"	CONSTRAINT WAD_LINX_VENDEDOR_PK PRIMARY KEY (CNPJ_EMP, COD_VENDEDOR))";
 	private static String nomeTabela = "WAD_LINX_VENDEDOR";
 
 	public VendedorDao() {
 		super(nomeTabela, sqlCreate);
 	}
 
-	public void gravarLista(List<VendedoresModel> vendedores) throws SQLException {
-		this.limparTabela();
+	public void gravarLista(String cnpjEmpresa, List<VendedoresModel> vendedores) throws SQLException {
+		this.limparTabela(cnpjEmpresa);
 		for (VendedoresModel vendedor : vendedores) {
 			if(vendedor.getCodigoVendedor() != null) {
 				this.insert(vendedor);
@@ -49,12 +50,12 @@ public class VendedorDao extends DefaultDao {
 						"	PORTAL, COD_VENDEDOR, NOME_VENDEDOR, TIPO_VENDEDOR, END_VEND_RUA, "+
 						"	END_VEND_NUMERO, END_VEND_COMPLEMENTO, END_VEND_BAIRRO, END_VEND_CEP, END_VEND_CIDADE, "+
 						"	END_VEND_UF, FONE_VENDEDOR, MAIL_VENDEDOR, DT_UPD, CPF_VENDEDOR, "+
-						"	ATIVO, DATA_ADMISSAO, DATA_SAIDA "+
+						"	ATIVO, DATA_ADMISSAO, DATA_SAIDA, CNPJ_EMP "+
 						" ) VALUES ( " + 
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
-						"    ?, ?, ?)";
+						"    ?, ?, ?, ?)";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setInt(1, vendedor.getPortal());
 		stmt.setInt(2, vendedor.getCodigoVendedor());
@@ -77,6 +78,7 @@ public class VendedorDao extends DefaultDao {
 		stmt.setString(16, vendedor.getAtivo());
 		stmt.setDate(17, vendedor.getDataAdminissao() != null ? new Date(vendedor.getDataAdminissao().getTime()) : null);
 		stmt.setDate(18, vendedor.getDataSaida() != null ? new Date(vendedor.getDataSaida().getTime()) : null);
+		stmt.setString(19, vendedor.getCnpjEmpresa());
 		stmt.execute();
 		stmt.close();
 	}

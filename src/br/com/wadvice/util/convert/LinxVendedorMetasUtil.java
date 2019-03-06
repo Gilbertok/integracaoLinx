@@ -11,55 +11,56 @@ import br.com.wadvice.rest.model.xml.Microvix;
 
 public class LinxVendedorMetasUtil extends ConvertUtil {
 
-	public void gravar(List<VendedorMetasModel> metas) throws SQLException {
+	public void gravar(String cnpjEmpresa, List<VendedorMetasModel> metas) throws SQLException {
 		VendedorMetasDao dao = new VendedorMetasDao();
-		dao.gravarLista(metas);
+		dao.gravarLista(cnpjEmpresa, metas);
 	}
 
-	public List<VendedorMetasModel> convertStringXmlToObjects(String xml) throws Exception {
-		List<VendedorMetasModel> vendedores = new ArrayList<VendedorMetasModel>();
+	public List<VendedorMetasModel> convertStringXmlToObjects(String cnpjEmpresa, String xml) throws Exception {
+		List<VendedorMetasModel> metas = new ArrayList<VendedorMetasModel>();
 		Microvix result = super.parseXml(xml);
 		String[] cabecalhos = result.getResponseData().getChave().getValor();
 		List<DadosXml> registros = result.getResponseData().getResultados();
 		for (DadosXml dadosXml : registros) {
-			VendedorMetasModel vendedor = new VendedorMetasModel();
+			VendedorMetasModel meta = new VendedorMetasModel();
+			meta.setCnpjEmpresa(cnpjEmpresa);
 			for (int i = 0; i < cabecalhos.length; i++) {
 				String valor = dadosXml.getValor()[i];
 				switch (cabecalhos[i]) {
 				case "portal":
-					vendedor.setPortal(valor);
+					meta.setPortal(valor);
 					continue;
 				case "cnpj_emp":
-					vendedor.setCnpjEmpresa(valor);
+					meta.setCnpjEmpresa(valor);
 					continue;
 				case "id_meta":
-					vendedor.setIdMeta(valor);
+					meta.setIdMeta(valor);
 					continue;
 				case "descricao_meta":
-					vendedor.setDescricao(valor);
+					meta.setDescricao(valor);
 					continue;
 				case "data_inicial_meta":
-					vendedor.setDataInicial(valor);
+					meta.setDataInicial(valor);
 					continue;
 				case "data_final_meta":
-					vendedor.setDataFinal(valor);
+					meta.setDataFinal(valor);
 					continue;
 				case "valor_meta_loja":
-					vendedor.setValorLoja(valor);
+					meta.setValorLoja(valor);
 					continue;
 				case "valor_meta_vendedor":
-					vendedor.setValorVendedor(valor);
+					meta.setValorVendedor(valor);
 					continue;
 				case "cod_vendedor":
-					vendedor.setCodigoVendedor(valor);
+					meta.setCodigoVendedor(valor);
 					continue;
 				default:
 					break;
 				}
 			}
-			vendedores.add(vendedor);
+			metas.add(meta);
 		}
-		return vendedores;
+		return metas;
 	}
 
 }

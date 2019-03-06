@@ -11,18 +11,19 @@ import br.com.wadvice.rest.model.xml.Microvix;
 
 public class LinxVendedoresUtil extends ConvertUtil {
 	
-	public void gravar(List<VendedoresModel> vendedores) throws SQLException {
+	public void gravar(String cnpjEmpresa, List<VendedoresModel> vendedores) throws SQLException {
 		VendedorDao dao = new VendedorDao();
-		dao.gravarLista(vendedores);
+		dao.gravarLista(cnpjEmpresa, vendedores);
 	}
 
-	public List<VendedoresModel> convertStringXmlToObjects(String xml) throws Exception {
+	public List<VendedoresModel> convertStringXmlToObjects(String cnpjEmpresa, String xml) throws Exception {
 		List<VendedoresModel> vendedores = new ArrayList<VendedoresModel>();
 		Microvix result = super.parseXml(xml);
 		String[] cabecalhos = result.getResponseData().getChave().getValor();
 		List<DadosXml> registros = result.getResponseData().getResultados();
 		for (DadosXml dadosXml : registros) {
 			VendedoresModel vendedor = new VendedoresModel();
+			vendedor.setCnpjEmpresa(cnpjEmpresa);
 			for (int i = 0; i < cabecalhos.length; i++) {
 				String valor = dadosXml.getValor()[i];
 				switch (cabecalhos[i]) {

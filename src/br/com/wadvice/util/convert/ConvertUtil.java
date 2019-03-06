@@ -12,7 +12,7 @@ public class ConvertUtil {
 	
 	protected Microvix parseXml(String xml) throws JAXBException {
 		xml = xml.replaceAll("﻿", "");
-		xml = new String(xml.getBytes(), StandardCharsets.UTF_8);
+		xml = new String(xml.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 		StringReader reader = new StringReader(xml);
 		JAXBContext context = JAXBContext.newInstance(Microvix.class);
 		return (Microvix) context.createUnmarshaller().unmarshal(reader);

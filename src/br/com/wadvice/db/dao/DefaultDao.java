@@ -37,7 +37,23 @@ public class DefaultDao {
 		}
 	}
 	
-	protected void limparTabela() {
+	protected void limparTabela(String cnpjEmpresa) {
+		try {
+			String query = "DELETE FROM " +nomeTabela+ " WHERE CNPJ_EMP = ?";
+			PreparedStatement stmt = instance.prepareStatement(query);
+			stmt.setString(1, cnpjEmpresa);
+			stmt.executeQuery();
+			stmt.close();
+		} catch (SQLException e) {
+			if(e.getErrorCode() == 942) {
+				this.criaTabela();
+			} else {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	protected void truncarTabela() {
 		try {
 			String query = "TRUNCATE TABLE " +nomeTabela+ " DROP STORAGE";
 			PreparedStatement stmt = instance.prepareStatement(query);

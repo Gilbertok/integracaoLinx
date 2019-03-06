@@ -23,7 +23,7 @@ public class SincVendedoresMetas extends SyncRest {
 			ConfigXml config = ConfigUtils.getInstance();
 			List<VendedorMetasModel> metas = this.postData(config.getUrlWebService(), cnpjEmpresa);
 			logger.debug(metas.toString());
-			util.gravar(metas);
+			util.gravar(cnpjEmpresa, metas);
 			logger.info("Vendedores Metas syncronizados ");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,7 +33,7 @@ public class SincVendedoresMetas extends SyncRest {
 
 	private List<VendedorMetasModel> postData(String url, String cnpjEmpresa) throws Exception {
 		String dados = super.post(url, cnpjEmpresa, null);
-		return util.convertStringXmlToObjects(dados);
+		return util.convertStringXmlToObjects(cnpjEmpresa, dados);
 	}
 
 }

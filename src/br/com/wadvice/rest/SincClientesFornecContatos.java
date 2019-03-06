@@ -24,7 +24,7 @@ public class SincClientesFornecContatos extends SyncRest {
 			ConfigXml config = ConfigUtils.getInstance();
 			List<ClientesFornecContatosModel> contatos = this.postData(config.getUrlWebService(), cnpjEmpresa, data);
 			logger.debug(contatos.toString());
-			util.gravar(contatos);
+			util.gravar(cnpjEmpresa, contatos);
 			logger.info("Cliente/Fornecedores - Contatos syncronizados ");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -28,7 +28,7 @@ public class ClientesFornecContatosDao extends DefaultDao {
 		super(nomeTabela, sqlCreate);
 	}
 
-	public void gravarLista(List<ClientesFornecContatosModel> contatos) throws SQLException {
+	public void gravarLista(String cnpjEmpresa, List<ClientesFornecContatosModel> contatos) throws SQLException {
 		this.criaCasoNaoExista();
 		for (ClientesFornecContatosModel contato : contatos) {
 			if(contato.getCodigoCliente() != null && !contato.getCodigoCliente().isEmpty()) {

@@ -23,7 +23,7 @@ public class SincProdutoDetalhe extends SyncRest {
 			ConfigXml config = ConfigUtils.getInstance();
 			List<ProdutosDetalhesModel> produtos = this.postData(config.getUrlWebService(), cnpjEmpresa);
 			logger.debug(produtos.toString());
-			util.gravarProdutosDetalhes(produtos);
+			util.gravar(cnpjEmpresa, produtos);
 			logger.info("Produtos syncronizados");
 		} catch (Exception e) {
 			e.printStackTrace();

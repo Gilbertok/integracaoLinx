@@ -11,9 +11,9 @@ import br.com.wadvice.rest.model.xml.Microvix;
 
 public class LinxClientesFornecContatosUtil extends ConvertUtil {
 
-	public void gravar(List<ClientesFornecContatosModel> contatos) throws SQLException {
+	public void gravar(String cnpjEmpresa, List<ClientesFornecContatosModel> contatos) throws SQLException {
 		ClientesFornecContatosDao dao = new ClientesFornecContatosDao();
-		dao.gravarLista(contatos);
+		dao.gravarLista(cnpjEmpresa, contatos);
 	}
 
 	public List<ClientesFornecContatosModel> convertStringXmlToObjects(String xml) throws Exception {

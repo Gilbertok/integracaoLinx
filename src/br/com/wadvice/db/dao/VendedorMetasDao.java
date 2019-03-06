@@ -26,8 +26,8 @@ public class VendedorMetasDao extends DefaultDao {
 		super(nomeTabela, sqlCreate);
 	}
 
-	public void gravarLista(List<VendedorMetasModel> metas) throws SQLException {
-		this.limparTabela();
+	public void gravarLista(String cnpjEmpresa, List<VendedorMetasModel> metas) throws SQLException {
+		this.limparTabela(cnpjEmpresa);
 		for (VendedorMetasModel meta : metas) {
 			if(meta.getCodigoVendedor() != null) {
 				this.insert(meta);
@@ -38,10 +38,10 @@ public class VendedorMetasDao extends DefaultDao {
 	private void insert(VendedorMetasModel meta) throws SQLException {
 		String query = "INSERT INTO WAD_LINX_VENDEDOR (" + 
 				 		"	PORTAL, CNPJ_EMP, ID_META, DESCRICAO_META, DATA_INICIAL_META, "+
-				 		"	DATA_FINAL_META, VALOR_META_LOJA, VALOR_META_VENDEDOR, COD_VENDEDOR"+
+				 		"	DATA_FINAL_META, VALOR_META_LOJA, VALOR_META_VENDEDOR, COD_VENDEDOR, CNPJ_EMP"+
 						" ) VALUES ( " + 
 						"    ?, ?, ?, ?, ?,"+
-						"    ?, ?, ?, ?)";
+						"    ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setInt(1, meta.getPortal());
 		stmt.setString(2, meta.getCnpjEmpresa());
@@ -53,6 +53,7 @@ public class VendedorMetasDao extends DefaultDao {
 		stmt.setFloat(7, meta.getValorLoja());
 		stmt.setFloat(8, meta.getValorVendedor());
 		stmt.setInt(9, meta.getCodigoVendedor());
+		stmt.setString(10, meta.getCnpjEmpresa());
 		stmt.execute();
 		stmt.close();
 	}

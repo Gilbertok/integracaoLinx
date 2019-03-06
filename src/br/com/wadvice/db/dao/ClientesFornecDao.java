@@ -45,6 +45,7 @@ public class ClientesFornecDao extends DefaultDao {
 									"	FAX_CLIENTE VARCHAR2(50 BYTE), "+
 									"	SITE_CLIENTE VARCHAR2(60 BYTE), "+
 									"	EMPRESA_CADASTRO NUMBER(*, 0), "+
+									"	DATA_ATUALIZACAO DATE NOT NULL," +
 									"	CONSTRAINT WAD_LINX_CLI_FORN_PK PRIMARY KEY (DOC_CLIENTE))";
 	private static String nomeTabela = "WAD_LINX_CLI_FORN";
 	
@@ -73,7 +74,7 @@ public class ClientesFornecDao extends DefaultDao {
 						"	EMAIL_CLIENTE, SEXO, DATA_CADASTRO, DATA_NASCIMENTO, CEL_CLIENTE, "+
 						"	ATIVO, DT_UPDATE, INSCRICAO_ESTADUAL, INSCRICAO_MUNICIPAL, IDENTIDADE_CLIENTE, "+
 						"	CARTAO_FIDELIDADE, COD_IBGE_MUNICIPIO, CLASSE_CLIENTE, MATRICULA_CONVENIADO, TIPO_CADASTRO, "+
-						"	ID_ESTADO_CIVIL, FAX_CLIENTE, SITE_CLIENTE, EMPRESA_CADASTRO) "+
+						"	ID_ESTADO_CIVIL, FAX_CLIENTE, SITE_CLIENTE, EMPRESA_CADASTRO, DATA_ATUALIZACAO) "+
 						"VALUES " + 
 						"    (?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
@@ -81,7 +82,7 @@ public class ClientesFornecDao extends DefaultDao {
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
-						"    ?, ?, ?, ?)";
+						"    ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setInt(1, cliente.getPortal());
 		stmt.setString(2, cliente.getCodigoCliente());
@@ -123,6 +124,7 @@ public class ClientesFornecDao extends DefaultDao {
 		stmt.setString(32, cliente.getFax());
 		stmt.setString(33, cliente.getSite());
 		stmt.setInt(34, cliente.getEmpresa());
+		stmt.setDate(35, new Date(new java.util.Date().getTime()));
 		stmt.execute();
 		stmt.close();
 	}
@@ -135,7 +137,7 @@ public class ClientesFornecDao extends DefaultDao {
 						"	DATA_CADASTRO = ?, DATA_NASCIMENTO = ?, CEL_CLIENTE = ?, ATIVO = ?, DT_UPDATE = ?, "+
 						"	INSCRICAO_ESTADUAL = ?, INSCRICAO_MUNICIPAL = ?, IDENTIDADE_CLIENTE = ?, CARTAO_FIDELIDADE = ?, COD_IBGE_MUNICIPIO = ?, "+
 						"	CLASSE_CLIENTE = ?, MATRICULA_CONVENIADO = ?, TIPO_CADASTRO = ?, ID_ESTADO_CIVIL = ?, FAX_CLIENTE = ?, "+
-						"	SITE_CLIENTE = ? "+
+						"	SITE_CLIENTE = ?, DATA_ATUALIZACAO = ? "+
 						"WHERE DOC_CLIENTE = ? AND EMPRESA_CADASTRO = ?";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setString(1, cliente.getCodigoCliente());
@@ -175,8 +177,9 @@ public class ClientesFornecDao extends DefaultDao {
 		stmt.setString(30, cliente.getFax());
 		
 		stmt.setString(31, cliente.getSite());
-		stmt.setString(32, cliente.getCpfCnpj());
-		stmt.setInt(33, cliente.getEmpresa());
+		stmt.setDate(32, new Date(new java.util.Date().getTime()));
+		stmt.setString(33, cliente.getCpfCnpj());
+		stmt.setInt(34, cliente.getEmpresa());
 		stmt.executeUpdate();
 		stmt.close();
 	}
