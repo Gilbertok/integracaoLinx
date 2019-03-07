@@ -30,16 +30,11 @@ public class ProdutosDetalhesDao extends DefaultDao {
 		this.setSqlCreate(sqlCreateProdutosDetalhesDao);
 	}
 	
-	public void gravarLista(String cnpjEmpresa, List<ProdutosDetalhesModel> produtos) {
+	public void gravarLista(String cnpjEmpresa, List<ProdutosDetalhesModel> produtos) throws SQLException {
 		this.limparTabela(cnpjEmpresa);
 		for (ProdutosDetalhesModel produto : produtos) {
 			if(produto.getCodBarra() != null && !produto.getCodBarra().isEmpty()) {
-				try {
-					this.insert(produto);
-				} catch (SQLException e) {
-					System.out.println("Produto: "+ produto.getCodProduto());
-					e.printStackTrace();
-				}
+				this.insert(produto);
 			}
 		}
 	}

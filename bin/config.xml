@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <Config>
 	<url_web_service>https://webapi.microvix.com.br/1.0/api/integracao</url_web_service>
-	<db_server>192.168.0.254</db_server>
-	<db_database>XE</db_database>
-	<db_user>systextil</db_user>
+	<db_server>192.168.1.7</db_server>
+	<db_database>DBSYSTEX</db_database>
+	<db_user>bg</db_user>
 	<db_password>oracle</db_password>
 	<dt_base_sync>2016-01-01</dt_base_sync>
 </Config>

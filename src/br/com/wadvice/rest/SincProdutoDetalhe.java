@@ -24,10 +24,10 @@ public class SincProdutoDetalhe extends SyncRest {
 			List<ProdutosDetalhesModel> produtos = this.postData(config.getUrlWebService(), cnpjEmpresa);
 			logger.debug(produtos.toString());
 			util.gravar(cnpjEmpresa, produtos);
-			logger.info("Produtos syncronizados");
+			logger.info("Produtos Detalhe syncronizados");
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.warn("Produtos erro: "+e.getMessage());
+			logger.warn("Produtos Detalhe erro: "+e.getMessage());
 		}
 	}
 	

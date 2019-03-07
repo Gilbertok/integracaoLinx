@@ -12,6 +12,7 @@ import br.com.wadvice.rest.SincClientesFornecContatos;
 import br.com.wadvice.rest.SincLojas;
 import br.com.wadvice.rest.SincMovimentosNF;
 import br.com.wadvice.rest.SincMovimentosNfTroca;
+import br.com.wadvice.rest.SincProduto;
 import br.com.wadvice.rest.SincProdutoDetalhe;
 import br.com.wadvice.rest.SincVendedores;
 import br.com.wadvice.rest.SincVendedoresMetas;
@@ -30,6 +31,7 @@ public class TaskRun {
 		for (GrupoLojasModel loja : lojas) {
 			logger.info(" Loja -------- "+ loja.getCnpjEmpresa()+ " - "+ loja.getNomeEmpresa());
 			LinxConfigDao conf = new LinxConfigDao();
+			new SincProduto().getData(loja.getCnpjEmpresa());
 			new SincProdutoDetalhe().getData(loja.getCnpjEmpresa());
 			new SincVendedores().getData(loja.getCnpjEmpresa());
 			new SincVendedoresMetas().getData(loja.getCnpjEmpresa());

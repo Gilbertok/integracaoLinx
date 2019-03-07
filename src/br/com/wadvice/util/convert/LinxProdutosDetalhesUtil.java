@@ -25,39 +25,40 @@ public class LinxProdutosDetalhesUtil extends ConvertUtil {
 		for (DadosXml dadosXml : registros) {
 			ProdutosDetalhesModel produto = new ProdutosDetalhesModel();
 			for (int i = 0; i < cabecalhos.length; i++) {
+				String valor = dadosXml.getValor()[i];
 				switch (cabecalhos[i]) {
 				case "portal":
-					produto.setPortal(dadosXml.getValor()[i]);
+					produto.setPortal(valor);
 					continue;
 				case "cnpj_emp":
-					produto.setCnpjEmpresa(dadosXml.getValor()[i]);
+					produto.setCnpjEmpresa(valor);
 					continue;
 				case "cod_produto":
-					produto.setCodProduto(dadosXml.getValor()[i]);
+					produto.setCodProduto(valor);
 					continue;
 				case "cod_barra":
-					produto.setCodBarra(dadosXml.getValor()[i]);
+					produto.setCodBarra(valor);
 					continue;
 				case "quantidade":
-					produto.setQuantidade(dadosXml.getValor()[i]);
+					produto.setQuantidade(valor);
 					continue;
 				case "preco_custo":
-					produto.setPrecoCusto(dadosXml.getValor()[i]);
+					produto.setPrecoCusto(valor);
 					continue;
 				case "preco_venda":
-					produto.setPrecoVenda(dadosXml.getValor()[i]);
+					produto.setPrecoVenda(valor);
 					continue;
 				case "custo_medio":
-					produto.setCustoMedio(dadosXml.getValor()[i]);
+					produto.setCustoMedio(valor);
 					continue;
 				case "id_config_tributaria":
-					produto.setIdConfigTributaria(dadosXml.getValor()[i]);
+					produto.setIdConfigTributaria(valor);
 					continue;
 				case "desc_config_tributaria":
-					produto.setDescConfigTributaria(dadosXml.getValor()[i]);
+					produto.setDescConfigTributaria(valor);
 					continue;
 				case "despesas1":
-					produto.setDespesas1(dadosXml.getValor()[i]);
+					produto.setDespesas1(valor);
 					continue;
 				default:
 					break;
