@@ -132,7 +132,7 @@ public class ProdutoDao extends DefaultDao {
 						"   DESC_MARCA = ?, DESC_COLECAO = ?, DT_UPDATE = ?, COD_FORNECEDOR = ?, DESATIVADO = ?,    "+
 						"   DESC_ESPESSURA = ?, ID_ESPESSURA = ?, DESC_CLASSIFICACAO = ?, ORIGEM_MERCADORIA = ?, PESO_LIQUIDO = ?,  "+
 						"   PESO_BRUTO = ?, ID_COR = ?, ID_TAMANHO = ?, ID_SETOR = ?, ID_LINHA = ?,     "+
-						"   ID_MARCA = ?, ID_COLECAO = ?, ID_CLASSIFICACAO = ?, DT_INCLUSAO = ?, DATA_ATUALIZACAO "+
+						"   ID_MARCA = ?, ID_COLECAO = ?, ID_CLASSIFICACAO = ?, DT_INCLUSAO = ?, DATA_ATUALIZACAO = ? "+
 						"WHERE COD_BARRA = ? ";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setString(1, produto.getNome());
