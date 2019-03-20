@@ -1,5 +1,6 @@
 package br.com.wadvice.db.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProdutosDetalhesDao extends DefaultDao {
 													"	ID_CONFIG_TRIBUTARIA NUMBER(*,0), " + 
 													"	DESC_CONFIG_TRIBUTARIA VARCHAR2(30 BYTE), " + 
 													"	DESPESAS1 FLOAT(126), " + 
+													"   DATA_ATUALIZACAO DATE NOT NULL," +
 													"	CONSTRAINT WAD_LINX_PROD_DET_PK PRIMARY KEY (COD_BARRA, CNPJ_EMP)" + 
 													")";
 	private String nomeTabelaProdutosDetalhesDao = "WAD_LINX_PROD_DET";
@@ -41,23 +43,24 @@ public class ProdutosDetalhesDao extends DefaultDao {
 
 	private void insert(ProdutosDetalhesModel produto) throws SQLException {
 		String query = "INSERT INTO WAD_LINX_PROD_DET " + 
-						"    (PORTAL, CNPJ_EMP, COD_BARRA, COD_PRODUTO, ID_CONFIG_TRIBUTARIA, DESC_CONFIG_TRIBUTARIA, DESPESAS1, CUSTO_MEDIO, PRECO_CUSTO, PRECO_VENDA, QUANTIDADE) " + 
+						"    (PORTAL, CNPJ_EMP, COD_BARRA, COD_PRODUTO, ID_CONFIG_TRIBUTARIA, DESC_CONFIG_TRIBUTARIA, DESPESAS1, CUSTO_MEDIO, PRECO_CUSTO, PRECO_VENDA, QUANTIDADE, DATA_ATUALIZACAO) " + 
 						"VALUES " + 
-						"    (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		PreparedStatement prepareStatement = instance.prepareStatement(query);
-		prepareStatement.setInt(1, produto.getPortal());
-		prepareStatement.setString(2, produto.getCnpjEmpresa());
-		prepareStatement.setString(3, produto.getCodBarra());
-		prepareStatement.setString(4, produto.getCodProduto());
-		prepareStatement.setInt(5, produto.getIdConfigTributaria());
-		prepareStatement.setString(6, produto.getDescConfigTributaria());
-		prepareStatement.setFloat(7, produto.getDespesas1());
-		prepareStatement.setFloat(8, produto.getCustoMedio());
-		prepareStatement.setFloat(9, produto.getPrecoCusto());
-		prepareStatement.setFloat(10, produto.getPrecoVenda());
-		prepareStatement.setFloat(11, produto.getQuantidade());
-        prepareStatement.execute();
-        prepareStatement.close();
+						"    (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = instance.prepareStatement(query);
+		stmt.setInt(1, produto.getPortal());
+		stmt.setString(2, produto.getCnpjEmpresa());
+		stmt.setString(3, produto.getCodBarra());
+		stmt.setString(4, produto.getCodProduto());
+		stmt.setInt(5, produto.getIdConfigTributaria());
+		stmt.setString(6, produto.getDescConfigTributaria());
+		stmt.setFloat(7, produto.getDespesas1());
+		stmt.setFloat(8, produto.getCustoMedio());
+		stmt.setFloat(9, produto.getPrecoCusto());
+		stmt.setFloat(10, produto.getPrecoVenda());
+		stmt.setFloat(11, produto.getQuantidade());
+		stmt.setDate(12, new Date(new java.util.Date().getTime()));
+        stmt.execute();
+        stmt.close();
 	}
 
 }

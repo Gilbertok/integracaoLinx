@@ -19,6 +19,7 @@ public class VendedorMetasDao extends DefaultDao {
 									"	VALOR_META_LOJA FLOAT(126), "+
 									"	VALOR_META_VENDEDOR FLOAT(126), "+
 									"	COD_VENDEDOR NUMBER NOT NULL ENABLE, "+
+									"   DATA_ATUALIZACAO DATE NOT NULL," +
 									"	CONSTRAINT WAD_LINX_VENDEDOR_METAS_UK1 UNIQUE (CNPJ_EMP, COD_VENDEDOR, ID_META))";
 	private static String nomeTabela = "WAD_LINX_VENDEDOR_METAS";
 

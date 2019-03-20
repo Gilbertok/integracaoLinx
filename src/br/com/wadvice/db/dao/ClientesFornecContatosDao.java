@@ -21,6 +21,7 @@ public class ClientesFornecContatosDao extends DefaultDao {
 										"	CELULAR_CONTATO VARCHAR2(20 BYTE), "+
 										"	EMAIL_CONTATO VARCHAR2(50 BYTE), "+
 										"	DATA_NASC_CONTATO DATE, "+
+										"   DATA_ATUALIZACAO DATE NOT NULL," +
 										"	TIPO_CONTATO VARCHAR2(20 BYTE))";
 	private static String nomeTabela = "WAD_LINX_CLI_FORN_CONT";
 	
@@ -62,11 +63,11 @@ public class ClientesFornecContatosDao extends DefaultDao {
 		String query = "INSERT INTO WAD_LINX_CLI_FORN_CONT " + 
 						"	PORTAL, COD_CLIENTE, NOME_CONTATO, SEXO_CONTATO, CONT_PARENTESCO, "+
 						"	FONE1_CONTATO, FONE2_CONTATO, CELULAR_CONTATO, EMAIL_CONTATO, DATA_NASC_CONTATO, "+
-						"	TIPO_CONTATO "+
+						"	TIPO_CONTATO, DATA_ATUALIZACAO "+
 						"VALUES " + 
 						"    (?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
-						"    ?)";
+						"    ?, ?)";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setInt(1, contato.getPortal());
 		stmt.setString(2, contato.getCodigoCliente());
@@ -81,6 +82,7 @@ public class ClientesFornecContatosDao extends DefaultDao {
 		stmt.setDate(10, contato.getDataNascimento() != null ? new Date(contato.getDataNascimento().getTime()) : null);
 		
 		stmt.setString(11, contato.getTipo());
+		stmt.setDate(12, new Date(new java.util.Date().getTime()));
 		stmt.execute();
 		stmt.close();
 	}

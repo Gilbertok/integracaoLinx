@@ -29,6 +29,7 @@ public class VendedorDao extends DefaultDao {
 										"	ATIVO VARCHAR2(1 BYTE), "+
 										"	DATA_ADMISSAO DATE, "+
 										"	DATA_SAIDA DATE, "+
+										"   DATA_ATUALIZACAO DATE NOT NULL," +
 										"	CONSTRAINT WAD_LINX_VENDEDOR_PK PRIMARY KEY (CNPJ_EMP, COD_VENDEDOR))";
 	private static String nomeTabela = "WAD_LINX_VENDEDOR";
 
@@ -50,12 +51,12 @@ public class VendedorDao extends DefaultDao {
 						"	PORTAL, COD_VENDEDOR, NOME_VENDEDOR, TIPO_VENDEDOR, END_VEND_RUA, "+
 						"	END_VEND_NUMERO, END_VEND_COMPLEMENTO, END_VEND_BAIRRO, END_VEND_CEP, END_VEND_CIDADE, "+
 						"	END_VEND_UF, FONE_VENDEDOR, MAIL_VENDEDOR, DT_UPD, CPF_VENDEDOR, "+
-						"	ATIVO, DATA_ADMISSAO, DATA_SAIDA, CNPJ_EMP "+
+						"	ATIVO, DATA_ADMISSAO, DATA_SAIDA, CNPJ_EMP, DATA_ATUALIZACAO "+
 						" ) VALUES ( " + 
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
 						"    ?, ?, ?, ?, ?,"+
-						"    ?, ?, ?, ?)";
+						"    ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = instance.prepareStatement(query);
 		stmt.setInt(1, vendedor.getPortal());
 		stmt.setInt(2, vendedor.getCodigoVendedor());
@@ -79,6 +80,7 @@ public class VendedorDao extends DefaultDao {
 		stmt.setDate(17, vendedor.getDataAdminissao() != null ? new Date(vendedor.getDataAdminissao().getTime()) : null);
 		stmt.setDate(18, vendedor.getDataSaida() != null ? new Date(vendedor.getDataSaida().getTime()) : null);
 		stmt.setString(19, vendedor.getCnpjEmpresa());
+		stmt.setDate(20, new Date(new java.util.Date().getTime()));
 		stmt.execute();
 		stmt.close();
 	}

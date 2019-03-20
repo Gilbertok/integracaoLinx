@@ -87,6 +87,7 @@ public class MovimentosNfDao extends DefaultDao {
 								"	PRECO_TABELA_EPOCA FLOAT(126), " + 
 								"	DESCONTO_TOTAL_ITEM FLOAT(126), " + 
 								"	CONFERIDO VARCHAR2(1 BYTE), " + 
+								"   DATA_ATUALIZACAO DATE NOT NULL," +
 								"	CONSTRAINT WAD_LINX_MOV_NF_PK PRIMARY KEY (TRANSACAO),"+
 								"	CONSTRAINT WAD_LINX_MOV_NF_UK1 UNIQUE (CNPJ_EMP, TRANSACAO))";
 	private String nomeTabela = "WAD_LINX_MOV_NF";
